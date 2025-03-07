@@ -23,9 +23,9 @@ interface Character {
 }
 
 export default function CharacterDetail() {
-  const params = useParams();
+  const params = useParams(); //url'den dinamik id'yi alır.
   const [character, setCharacter] = useState<Character | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); //api çağrısı sırasında hata mesajı burada tutulur.
 
   useEffect(() => {
     const fetchCharacter = async () => {
@@ -70,7 +70,7 @@ export default function CharacterDetail() {
 
   return (
     <div className="container-fluid">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-lg navbar-dark mb-4">
         <div className="container">
           <Link href="/" className="navbar-brand">
             Rick & Morty
@@ -79,14 +79,13 @@ export default function CharacterDetail() {
       </nav>
 
       <div className="container mt-4">
-        <div className="card">
+        <div className="card character-detail-card">
           <div className="row g-0">
             <div className="col-md-4">
               <img
                 src={character.image}
                 alt={character.name}
                 className="img-fluid rounded-start"
-                style={{ width: "100%", height: "auto" }}
               />
             </div>
             <div className="col-md-8">
@@ -103,14 +102,14 @@ export default function CharacterDetail() {
                     <h5>Gender:</h5>
                     <p>{character.gender}</p>
                   </div>
-                  {character.type && (
+                  {character.type && ( //
                     <div className="info-section mb-3">
                       <h5>Type:</h5>
                       <p>{character.type}</p>
                     </div>
                   )}
-                  <div className="info-section mb-3">
-                    <h5>Last known location:</h5>
+                  <div className="info-section mb-3 ">
+                    <h5 >Last known location:</h5>
                     <p>{character.location.name}</p>
                   </div>
                   <div className="info-section mb-3">

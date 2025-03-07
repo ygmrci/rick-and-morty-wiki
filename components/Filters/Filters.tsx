@@ -3,7 +3,7 @@
 import React from "react";
 
 interface FiltersProps {
-  setStatus: (status: string) => void;
+  setStatus: (status: string) => void; 
   setGender: (gender: string) => void;
   setSpecies: (species: string) => void;
   setPageNumber: (page: number) => void;
@@ -32,7 +32,7 @@ export default function Filters({
   ];
 
   const handleFilter = (
-    filterType: "status" | "gender" | "species",
+    filterType: "status" | "gender" | "species", 
     value: string
   ) => {
     setPageNumber(1);
@@ -74,12 +74,12 @@ export default function Filters({
                   className="form-check-input"
                   type="radio"
                   name="status"
-                  id={`status-${status}`}
-                  onChange={() => handleFilter("status", status)}
+                  id={`status-${status}`} 
+                  onChange={() => handleFilter("status", status)} 
                 />
                 <label
                   className="form-check-label"
-                  htmlFor={`status-${status}`}
+                  htmlFor={`status-${status}`} 
                 >
                   {status}
                 </label>

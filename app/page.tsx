@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup, Spinner } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
@@ -30,9 +30,11 @@ export default function Home() {
   const [selectedSpecies, setSelectedSpecies] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
+  const [loading, setLoading] = useState(false);
+  //Karakterlerin yüklenmesi
   useEffect(() => {
     const fetchCharacters = async () => {
+      setLoading(true);
       try {
         let url = `https://rickandmortyapi.com/api/character/?page=${currentPage}`;
         if (searchTerm) {
@@ -51,6 +53,8 @@ export default function Home() {
       } catch (error) {
         console.error("Error loading characters:", error);
         setCharacters([]);
+      }finally{
+        setLoading(false); //Karakterler yüklendikten sonra loading false olacak
       }
     };
 
@@ -82,7 +86,6 @@ export default function Home() {
               <FaSearch />
             </InputGroup.Text>
             <Form.Control
-              
               type="text"
               placeholder="Search for characters..."
               value={searchTerm}
